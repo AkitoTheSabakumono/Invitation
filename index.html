@@ -8,14 +8,15 @@
   <style>
     /* Reset and base */
     html, body {
-      margin: 0; padding: 0;
-      height: 100%;
-      background: #000;
-      font-family: 'Roboto', sans-serif;
-      color: #fff;
-      overflow: hidden;
-      background: radial-gradient(circle at center, #1a1a1a 0%, #000 90%);
-    }
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* block sideways scroll */
+  overflow-y: auto;   /* allow vertical scroll */
+  min-height: 100%;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 90%);
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+}
 
     /* Background aura canvas */
     canvas#auraCanvas {
