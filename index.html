@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Урилга - Төрийн дээд шагнал</title>
+  <title>Урилга</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet" />
   <style>
     /* Reset and base */
@@ -27,6 +27,33 @@
       z-index: 0;
       background: transparent;
     }
+   
+    .play-button {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 18px;
+  box-shadow: 0 0 15px #FFD700;
+  cursor: pointer;
+  z-index: 999;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+
+.play-button:hover {
+  background-color: #e0c100;
+  transform: scale(1.05);
+}
+
+  
 
     /* Container with luxurious border and subtle marble texture */
     .container {
@@ -36,7 +63,7 @@
       margin: 80px auto 100px auto;
       background: 
         url('https://www.transparenttextures.com/patterns/gold-fish-scale.png') repeat,
-        rgba(10, 10, 10, 0.85); /* slightly more transparent */
+        rgba(0, 25, 51, 0.85); /* slightly more transparent */
       background-blend-mode: overlay;
       color: #eee;
       border: 3px solid #FFD700;
@@ -203,10 +230,21 @@
   font-size: 0.9em;
   vertical-align: middle;
 }
+   
+
 
   </style>
 </head>
 <body>
+  <button id="playBtn" class="play-button">🎵 Хөгжим</button>
+  <audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mpeg" />
+  Таны хөтөч хөгжим тоглуулахгүй байж магадгүй.
+</audio>
+
+
+
+
 
   <!-- Aura Canvas -->
   <canvas id="auraCanvas"></canvas>
@@ -223,29 +261,45 @@
   </svg>
 
   <div class="container" role="main" aria-label="Invitation to Honor Ceremony">
-    <h1 id="mainTitle"><span class="emoji">🎖</span> Урилга <span class="emoji">🎖</span></h1>
+    <!-- Medal image above title -->
+<!-- Glowing medal image above title -->
+<img 
+
+  src="medal-removebg-preview.png" 
+  alt="Medal" 
+  style="
+    display: block;
+    margin: 0 auto 30px auto;
+    width: 160px;
+    height: auto;
+    filter: drop-shadow(0 0 12px #FFD700) drop-shadow(0 0 24px #FFA500);
+    animation: glowImage 3s ease-in-out infinite;
+  "
+/>
+
+<h1 id="mainTitle">Урилга</h1>
+
+
 
 
     <div class="ceremony-description">
-      Монгол улсын ерөнхийлөгчийн зарлигаар
-      <span>“Монгол Улсын гавьяат тээвэрчин”</span>
-      цолыг хүртсэн эрхэм хүндэт
-      <span style="color: #fff; font-weight: 700;">Содномын Шагдар</span>-ийн хөдөлмөр, амьдралын гавьяаг хүндэтгэн,
-      түүний нэр төрийг албан ёсоор тунхаглах хүндэтгэлийн арга хэмжээнд таныг урьж байна.
+      <span style="color: #fff; font-weight: 700;">Эрхэм хүндэд таныг гэр бүлийн хамт</span><br>
+      
+      Төрийн дээд шагнал  <span>Монгол улсын гавъяат тээвэрчин</span> цол хүртсэн С. Шагдарын хүндэтгэлийн цайллаганд хүрэлцэн ирэхийг урьж байна.
     </div>
 
     <div class="gold-line"></div>
 
     <div class="info" aria-label="Event details">
       <p>📅 <span class="highlight">Хэзээ:</span> 2025 оны 8-р сарын 15</p>
-      <p>🕔 <span class="highlight">Цаг:</span> 17:00 (Оройн 5)</p>
-      <p>📍 <span class="highlight">Хаана:</span> Төв аймаг, Зуунмод хот</p>
+      <p>🕔 <span class="highlight">Цаг:</span> 11:00</p>
+      <p>📍 <span class="highlight">Хаана:</span> Зуун-мод өв соёлын өргөө хот</p>
       <p>📞 <span class="highlight">Холбогдох утас:</span> 88171791</p>
       <a class="map-link" href="https://maps.app.goo.gl/eNZ1jYtYs7TRCXbE6" target="_blank" rel="noopener noreferrer">📍 Байршлыг харах</a>
     </div>
 
     <p class="footer">
-      Шагдар болон түүний гэр бүл, найз нөхөд нь<br />
+      С. Шагдар болон түүний гэр бүл<br />
       танд гүнээ хүндэтгэлтэйгээр урилга хүргэж байна.
     </p>
   </div>
@@ -349,5 +403,22 @@
     }
     animate();
   </script>
+ <script>
+  const audio = document.getElementById('bg-music');
+  const playBtn = document.getElementById('playBtn');
+
+  playBtn.addEventListener('click', () => {
+    audio.play().then(() => {
+      playBtn.style.display = 'none'; // hide button after playing
+    }).catch(err => {
+      console.error('Audio play error:', err);
+      alert('Төхөөрөмж таныг хөгжим тоглуулахыг зөвшөөрсөнгүй.');
+    });
+  });
+</script>
+
+
+
+
 </body>
 </html>
